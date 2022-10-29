@@ -14,12 +14,12 @@
 		},
 		{
 			"type": "npm",
-			"script": "watch",
+			"script": "dev",
 			"group": "build",
 			"problemMatcher": [
 				"$tsc-watch"
 			],
-			"label": "npm: watch",
+			"label": "npm: dev",
 			"detail": ""
 		},
 	]

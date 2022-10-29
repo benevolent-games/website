@@ -10,6 +10,7 @@
 	"scripts": {
 		"build": "run-s clean && run-p typescript importmap links sass && run-p web",
 		"build-production": "run-s clean && run-p typescript importmap links sass && run-p web-production",
+		"dev": "run-p start watch",
 		"clean": "rm -rf x && mkdir -p x",
 		"importmap": "importly --host=node_modules < package-lock.json > x/importmap.json",
 		"links": "run-s link-s link-modules link-assets",
