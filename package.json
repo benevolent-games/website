@@ -1,0 +1,50 @@
+{
+	"private": true,
+	"name": "@benev/website",
+	"version": "0.0.0-dev.0",
+	"description": "",
+	"license": "MIT",
+	"author": "Chase Moskal <chasemoskal@gmail.com>",
+	"type": "module",
+	"files": [],
+	"scripts": {
+		"build": "run-s clean && run-p typescript importmap links sass && run-p web",
+		"clean": "rm -rf x && mkdir -p x",
+		"importmap": "importly --host=node_modules < package-lock.json > x/importmap",
+		"links": "ln -s $(realpath s) x/s && ln -s $(realpath node_modules) x/node_modules",
+		"typescript": "tsc",
+		"web": "node x/web/build.js production",
+		"web-debug": "node x/web/build.js debug",
+		"sass": "sass s/web/templates/:x/",
+		"watch": "run-s watch-typescript watch-web watch-sass",
+		"watch-typescript": "npm run -s typescript -- -w",
+		"watch-web": "chokidar \"x/web/**/*\" -c \"npm run web-debug -s && echo 'rebuilt web'\"",
+		"watch-sass": "npm run sass -s -- --watch",
+		"start": "http-server x"
+	},
+	"dependencies": {
+		"@chasemoskal/magical": "^0.0.0",
+		"@chasemoskal/snapstate": "^0.0.8",
+		"es-module-shims": "^1.4.6",
+		"lit": "^2.2.0",
+		"xiome": "^0.0.30"
+	},
+	"devDependencies": {
+		"chokidar": "^3.5.3",
+		"chokidar-cli": "^3.0.0",
+		"glob": "^8.0.3",
+		"http-server": "^14.1.0",
+		"importly": "^0.2.0",
+		"npm-run-all": "^4.1.5",
+		"sass": "^1.55.0",
+		"typescript": "^4.5.5"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/benevolent-games/website.git"
+	},
+	"bugs": {
+		"url": "https://github.com/benevolent-games/website/issues"
+	},
+	"homepage": "https://github.com/benevolent-games/website#readme"
+}

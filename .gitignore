@@ -1,0 +1,8 @@
+
+/x
+/node_modules
+
+/*.pem
+/*.tgz
+
+*.blend1
