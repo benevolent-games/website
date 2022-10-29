@@ -27,11 +27,11 @@
 		"start": "http-server x"
 	},
 	"dependencies": {
-		"@chasemoskal/magical": "^0.0.0",
+		"@chasemoskal/magical": "^0.0.1",
 		"@chasemoskal/snapstate": "^0.0.8",
 		"es-module-shims": "^1.4.6",
 		"lit": "^2.2.0",
-		"xiome": "^0.0.30"
+		"xiome": "^0.0.32"
 	},
 	"devDependencies": {
 		"chokidar": "^3.5.3",
