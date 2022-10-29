@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"strict": true,
 		"rootDir": "s",
 		"outDir": "x",
 		"target": "es2018",

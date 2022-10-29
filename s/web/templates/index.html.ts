@@ -1,6 +1,6 @@
 
 import {BenevolentWebsiteContext} from "../types.js"
-import {html, HtmlTemplate} from "xiome/x/toolbox/hamster-html/html.js"
+import {html} from "xiome/x/toolbox/hamster-html/html.js"
 
 import headBasicsHtml from "../partials/head-basics.html.js"
 
@@ -10,51 +10,22 @@ const urls = {
 	discussions: "https://github.com/benevolent-bees/benevolent.games/discussions",
 }
 
-const games: {
-	poster: string
-	title: string
-	link?: string
-}[] = [
-	{link: "/humanoid", poster: "humanoid.webp", title: "humanoid"},
-	{poster: "elderly-escape.webp", title: "elderly escape"},
-	{poster: "faster-than-the-slowest-camper.webp", title: "faster than the slowest camper"},
-	{poster: "snowfort.webp", title: "snowfort"},
-	{poster: "forbearance.webp", title: "forbearance"},
-	{poster: "muskets-of-obligation.webp", title: "muskets of obligation"},
-	{poster: "will-to-die.webp", title: "will to die"},
-	// {poster: "the-hopeless.webp", title: "the hopeless"},
-	// {poster: "break-action.webp", title: "break-action"},
-]
-
-function gamelink(link: string, content: HtmlTemplate) {
-	return link
-		? html`<a class="unit" ${link ?"data-playable" :""} href="${link}">${content}</a>`
-		: html`<div class="unit" tabindex="0">${content}</div>`
-}
-
 export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 
 <!doctype html>
-<html class="home">
+<html class=home>
 <head>
 	${headBasicsHtml({...options, mode, v, title: "benevolent.games"})}
-	${(() => {
-		switch (mode) {
 
-			case "debug":
-				return html`
-					<script defer src="/node_modules/es-module-shims/dist/es-module-shims.wasm.js"></script>
-					<script defer type=importmap-shim src="${v("/importmap.json")}"></script>
-					<script defer type=module-shim src="${v("/main.js")}"></script>
-				`
+	<script defer src="/node_modules/es-module-shims/dist/es-module-shims.wasm.js"></script>
+	<script defer type=importmap-shim src="${v("/importmap.json")}"></script>
+	<script defer type=module-shim src="${v("/main.js")}"></script>
 
-			case "production":
-				return html`
-					<script defer src="${v("/main.js")}"></script>
-				`
-		}
-	})()}
-
+	${
+		mode === "production"
+		? html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome.js")}"></script>`
+		: html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome-mock.js")}"></script>`
+	}
 	<style>
 		main > h1 > .logo-unit { display: none; }
 	</style>
@@ -74,33 +45,11 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 		<h1>
 			<div class="logo">
 				<div class="logo-unit">
-					<img src="/assets/website/benevolent.svg" alt=""/>
+					<img src="/assets/benevolent.svg" alt=""/>
 					<span>benevolent.games</span>
 				</div>
 			</div>
 		</h1>
-		<nav class="gamegrid" data-high-quality="false">
-			${games.map(({link, poster, title}) => html`
-				${gamelink(link, html`
-					<div class="hq">
-						<span>hq enabled</span>
-					</div>
-					<div class="poster">
-						<img src="/assets/website/posters/${poster}" alt="${title}"/>
-					</div>
-					<div class="comingsoon" ${link ?"" :"data-active"}>
-						<span>coming soon</span>
-					</div>
-					<div class="title">${title}</div>
-				`)}
-			`)}
-		</nav>
-		<div class="qualityselector">
-			<label>
-				<input class="qualitycheckbox" type="checkbox"/>
-				<span>Launch in High-Quality <em>(more megabytes!)</em></span>
-			</label>
-		</div>
 		<div class="slice">
 			<hr/>
 			<section>
