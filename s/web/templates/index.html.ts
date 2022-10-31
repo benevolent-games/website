@@ -1,8 +1,11 @@
 
 import {BenevolentWebsiteContext} from "../types.js"
-import {html} from "xiome/x/toolbox/hamster-html/html.js"
+import {html, html as svg} from "xiome/x/toolbox/hamster-html/html.js"
 
 import headBasicsHtml from "../partials/head-basics.html.js"
+
+import discordSvg from "../icons/akar/discord.svg.js"
+import githubSvg from "../icons/akar/github.svg.js"
 
 const urls = {
 	discord: "https://discord.gg/BnZx2utdev",
@@ -50,8 +53,67 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 				</div>
 			</div>
 		</h1>
-		<div class="slice">
-			<hr/>
+		<div class=slice>
+			<section class=games>
+				<h2>games</h2>
+				<ul>
+					<li>
+						<img src="/assets/images/posters/humanoid.webp" alt="humanoid"/>
+					</li>
+					<li>
+						<img src="/assets/images/posters/aeterna.webp" alt="aeterna"/>
+					</li>
+				</ul>
+			</section>
+			<section class=tools>
+				<h2>developer tools</h2>
+				<ul>
+					${[
+						"humanoid",
+						"terrarium",
+						"underworld",
+						"pilot",
+						"shad",
+						"octo",
+						"weaver",
+						"sparrow-rtc",
+						"mouseplay",
+						"nubs",
+					].map(name => html`
+						<li style="background-image: url('/assets/images/tools/tools.webp')">
+							${name}
+						</li>
+					`)}
+				</ul>
+			</section>
+			<section class=community>
+				<p>our missions to make awesome games, and to improve the indie web-game development ecosystem along the way, by making great tools.</p>
+				<p>many of our tools are built to work with [babylonjs](https://www.babylonjs.com/), but some of them are engine-agnostic.</p>
+			</section>
+			<section>
+				<ul>
+					<li>
+						<div>${svg(discordSvg)}</div>
+						<p>join our community on discord</p>
+					</li>
+					<li>
+						<div>${svg(githubSvg)}</div>
+						<p>checkout the projects on github</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<ul>
+					<li>📖 everything's open source</li>
+					<li>📲 runs on mobile and computer</li>
+					<li>💸 community-funded</li>
+				</ul>
+			</section>
+
+			<br/>
+			<br/>
+			<br/>
+			<br/>
 			<section>
 				<h2>community-powered games</h2>
 				<p>we're all growing tired of the greed and corporatism of the modern gaming industry. <em>let's make something new!</em></p>
