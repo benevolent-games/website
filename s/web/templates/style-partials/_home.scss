@@ -78,29 +78,36 @@
 
 	section.games {
 		text-align: center;
-	
+
 		ul {
 			list-style: none;
 			display: flex;
 			flex-direction: row;
+			flex-wrap: wrap;
 			justify-content: center;
 			gap: 1em;
 			user-select: none;
 
 			li {
 				transform: scale(1);
-				transition: transform 150ms ease;
+				transition: transform var(--anim);
+
+				position: relative;
+				overflow: hidden;
+				cursor: pointer;
+
 				box-shadow: 1px 4px 5px #0006;
 				border-radius: 0.5em;
-				overflow: hidden;
+
 				img {
 					display: block;
-					width: 12em;
+					width: 10em;
 					user-drag: none;
 				}
+
 				&::before {
 					opacity: 0;
-					transition: opacity 200ms ease;
+					transition: opacity var(--anim);
 
 					content: "coming soon";
 					display: flex;
@@ -109,13 +116,131 @@
 					justify-content: center;
 					inset: 0;
 					margin: auto;
-					background: #000e;
+
+					background: #111e;
 					color: white;
 				}
-				&:hover {
-					transform: scale(1.1);
+
+				&:is(:hover, :focus) {
+					transform: scale(1.05);
 					&::before {
 						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+
+	section.tools {
+		nav {
+			list-style: none;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 0.5em;
+
+			a {
+				flex: 1 0 auto;
+				max-width: 12em;
+
+				position: relative;
+				background-size: cover;
+				background-position: center center;
+				color: white;
+				text-shadow: 0 2px 2px #0008;
+				overflow: hidden;
+				text-decoration: none;
+
+				padding: 0.5em;
+
+				border-left: 3px solid;
+				border-color: #444;
+				transition: border-color var(--anim);
+
+				&::before {
+					content: "";
+					display: block;
+					position: absolute;
+					inset: 0;
+					background-color: #181818fa;
+					transition: background-color var(--anim);
+				}
+
+				> * {
+					position: relative;
+					z-index: 1;
+				}
+
+				> [data-name] {
+					display: block;
+				}
+
+				> [data-description] {
+					display: block;
+					opacity: 0.5;
+					text-decoration: none;
+					font-size: 0.6em;
+					font-family: sans-serif;
+					max-width: 16em;
+				}
+
+				&:is(:hover, :focus) {
+					border-color: var(--link-color);
+					&::before {
+						background-color: #181818ee;
+					}
+					> [data-name] {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+	}
+
+	section.community {
+		> ul {
+			list-style: none;
+		}
+		nav {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 2em;
+			a {
+				margin-top: 0.5em;
+				max-width: max-content;
+				font-size: 1.3em;
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				color: white;
+
+				padding: 0.5em 1em;
+				border: 1px solid #fff2;
+				border-radius: 0.5em;
+
+				> div {
+					transform: scale(1);
+					transition: transform var(--anim);
+					width: 2em;
+					height: 2em;
+					> svg {
+						width: 100%;
+						height: 100%;
+					}
+				}
+
+				&[data-link="discord"] {
+					> div {
+						padding: 0.3em;
+						border-radius: 3em;
+						background: #5764f1;
+					}
+				}
+
+				&:is(:hover, :focus) {
+					> div {
+						transform: scale(1.1);
 					}
 				}
 			}
@@ -300,7 +425,7 @@
 	.slice > hr {
 		width: 50%;
 		width: calc(50% - 1em);
-		margin: 3em auto;
+		margin: 4em auto;
 		height: 2px;
 		border: none;
 		background: #fff2;

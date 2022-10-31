@@ -4,13 +4,12 @@ import {html, html as svg} from "xiome/x/toolbox/hamster-html/html.js"
 
 import headBasicsHtml from "../partials/head-basics.html.js"
 
-import discordSvg from "../icons/akar/discord.svg.js"
 import githubSvg from "../icons/akar/github.svg.js"
+import discordSvg from "../icons/akar/discord.svg.js"
 
 const urls = {
 	discord: "https://discord.gg/BnZx2utdev",
-	github: "https://github.com/benevolent-bees/benevolent.games",
-	discussions: "https://github.com/benevolent-bees/benevolent.games/discussions",
+	github: "https://github.com/benevolent-games/",
 }
 
 export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
@@ -29,6 +28,7 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 		? html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome.js")}"></script>`
 		: html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome-mock.js")}"></script>`
 	}
+
 	<style>
 		main > h1 > .logo-unit { display: none; }
 	</style>
@@ -54,109 +54,63 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 			</div>
 		</h1>
 		<div class=slice>
+
 			<section class=games>
-				<h2>games</h2>
 				<ul>
-					<li>
+					<li tabindex=0>
 						<img src="/assets/images/posters/humanoid.webp" alt="humanoid"/>
 					</li>
-					<li>
+					<li tabindex=0>
 						<img src="/assets/images/posters/aeterna.webp" alt="aeterna"/>
 					</li>
 				</ul>
 			</section>
+
 			<section class=tools>
 				<h2>developer tools</h2>
-				<ul>
+				<nav>
 					${[
-						"humanoid",
-						"terrarium",
-						"underworld",
-						"pilot",
-						"shad",
-						"octo",
-						"weaver",
-						"sparrow-rtc",
-						"mouseplay",
-						"nubs",
-					].map(name => html`
-						<li style="background-image: url('/assets/images/tools/tools.webp')">
-							${name}
-						</li>
+						["humanoid", "1st/3rd person gameplay template"],
+						["terrarium", "generate infinite outdoor worlds"],
+						["underworld", "generate infinite dungeons"],
+						["pilot", "pathfinding"],
+						["shad", "shader devlab"],
+						["octo", "netcode for action games"],
+						["weaver", "netcode for rts games"],
+						["sparrow-rtc", "webrtc connectivity library"],
+						["mouseplay", "pointer-lock cursor systems"],
+						["nubs", "mobile thumbsticks"],
+						["swipe-snail", "fastest web swipe-panels around"],
+					].map(([name, description]) => html`
+						<a
+							href="https://github.com/benevolent-games/${name}#readme"
+							style="background-image: url('/assets/images/tools/tools.webp')">
+								<span data-name>${name}</span>
+								<span data-description>${description}</span>
+						</a>
 					`)}
-				</ul>
-			</section>
-			<section class=community>
-				<p>our missions to make awesome games, and to improve the indie web-game development ecosystem along the way, by making great tools.</p>
-				<p>many of our tools are built to work with [babylonjs](https://www.babylonjs.com/), but some of them are engine-agnostic.</p>
-			</section>
-			<section>
-				<ul>
-					<li>
-						<div>${svg(discordSvg)}</div>
-						<p>join our community on discord</p>
-					</li>
-					<li>
-						<div>${svg(githubSvg)}</div>
-						<p>checkout the projects on github</p>
-					</li>
-				</ul>
-			</section>
-			<section>
-				<ul>
-					<li>📖 everything's open source</li>
-					<li>📲 runs on mobile and computer</li>
-					<li>💸 community-funded</li>
-				</ul>
+				</nav>
 			</section>
 
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<section>
+			<section class=community>
 				<h2>community-powered games</h2>
-				<p>we're all growing tired of the greed and corporatism of the modern gaming industry. <em>let's make something new!</em></p>
-				<h3>introducing humanoid</h3>
-				<p><strong>humanoid</strong> is a prototype sandbox game template. it's where we experiment with new game mechanics, building a common platform for developers to make new games. it's an early prototype, and we make progress every week.</p>
-				<p>all of the source code and art assets are 100% open source.</p>
-				<br/>
-				<p>
-					<a href="${urls.discord}">🗫 join benevolent on discord</a>
-					<br/>
-					<a href="${urls.discussions}">💬 see updates on the discussions board</a>
-					<br/>
-					<a href="${urls.github}">👨‍💻 collaborate together on github</a>
-				</p>
+				<p>we're making games, and along the way, building tools to improve the indie web game development ecosystem.</p>
+				<ul>
+					<li>📖 everything we make is open source</li>
+					<li>📲 runs on mobile and computer</li>
+					<li>💸 community funded</li>
+				</ul>
+				<nav>
+					<a data-link=discord target=_blank href="${urls.discord}">
+						<div>${svg(discordSvg)}</div>
+						<p>join our community on <strong>discord</strong></p>
+					</a>
+					<a data-link=github href="${urls.github}">
+						<div>${svg(githubSvg)}</div>
+						<p>checkout the <strong>github</strong> repos</p>
+					</a>
+				</nav>
 			</section>
-			<hr/>
-			<h2 class="believe">we believe games can...</h2>
-			<div class="explaingrid">
-				<div>
-					<h3>🌎 run on any device</h3>
-					<h4>let's invite everyone to play.</h4>
-					<p>laptops, desktops, phones, and eventually, even vr. we develop games for the web, where no installations are required.</p>
-				</div>
-				<div>
-					<h3>📖 be open source</h3>
-					<h4>mit licensed.</h4>
-					<p>anybody can freely contribute, use our code and art, fork our games, and make their own new games. let's blur the lines between developers, modders, and the community.</p>
-				</div>
-				<div>
-					<h3>😇 involve the community</h3>
-					<h4>games don't need secrecy or nda's.</h4>
-					<p>join the developers for weekly play-testing sessions, participate in discussions about new ideas, and report bugs directly to our github issues page.</p>
-				</div>
-				<div>
-					<h3>💸 be funded by donations</h3>
-					<h4>what goes around comes around.</h4>
-					<p>we believe that if developers act with benevolence and generosity towards gamers, the community just might return the favor.</p>
-				</div>
-			</div>
-			<hr/>
-			<footer>
-				<p>join the <a href="${urls.discord}">discord</a> and get involved on <a href="${urls.github}">github</a></p>
-			</footer>
 		</div>
 	</main>
 </body>

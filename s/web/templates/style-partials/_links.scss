@@ -1,18 +1,14 @@
 
 a {
-	color: #ffe372;
+	color: var(--link-color);
 	text-decoration: none;
 }
 
 a:visited {
-	color: #d9be50;
+	color: var(--link-color-visited);
 }
 
 a:hover, a:focus {
-	color: #ff8;
+	color: var(--link-color-hover);
 	text-decoration: underline;
-}
-
-a:hover, a:focus {
-	color: #fff;
 }

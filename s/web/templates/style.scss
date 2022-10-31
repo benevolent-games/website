@@ -3,3 +3,10 @@
 @use "style-partials/links";
 @use "style-partials/home";
 @use "style-partials/game";
+
+html {
+	--link-color: #ffe372;
+	--link-color-visited: #d9be50;
+	--link-color-hover: #fff;
+	--anim: 100ms ease;
+}
