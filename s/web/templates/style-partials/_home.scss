@@ -1,40 +1,43 @@
 
+xio-menu {
+	color: #222;
+	--menu-margin: 1em;
+	--avatar-size: 2em;
+	--menu-background: transparent;
+	--menu-gapsize: 0;
+	xiome-my-avatar {
+		display: block;
+	}
+	::part(xio-avatar) {
+		display: block;
+	}
+}
+
 .home {
 	.menubar {
 		position: relative;
 		max-width: 1700px;
 		margin: auto;
-
-		xio-menu {
-			color: #222;
-			--menu-margin: 1em;
-			--avatar-size: 2em;
-			--menu-background: transparent;
-			--menu-gapsize: 0;
-		}
-
-		xiome-my-avatar {
-			display: block;
-		}
-
-		::part(xio-avatar) {
-			display: block;
-		}
 	}
 
 	section[data-panel="game"] {
+		display: none;
 		width: 100%;
-		height: 100%;
 
 		[data-game] {
 			width: 100%;
-			height: 100%;
+			min-height: 100vh;
 			max-width: 100em;
 			margin: auto;
 
-			header {
+			display: flex;
+			flex-direction: column;
+
+			> header {
 				display: flex;
 				flex-direction: column;
+				gap: 0.5rem;
+
 				padding: 5% 10%;
 
 				&::before {
@@ -48,20 +51,35 @@
 				height: 100%;
 				min-height: min-content;
 				max-height: 24em;
-	
-				> h1 {
-					font-size: 4rem;
-					color: white;
-					text-shadow: 1px 3px 5px #0008;
+
+				> :is(h1, p) {
+					background: #0002;
+					max-width: max-content;
+					backdrop-filter: blur(0.5rem);
+					border-radius: 0.5rem;
 				}
 
-				> p {
+				h1 {
+					font-size: 4rem;
+					padding: 0.4rem 1rem;
+					color: white;
+					text-shadow: 1px 3px 5px #0008;
+					> img {
+						display: block;
+						height: 100px;
+						max-width: 100%;
+						object-fit: contain;
+					}
+				}
+
+				p {
 					font-size: 1.2rem;
+					padding: 0.4rem 1.5rem;
 					color: white;
 					text-shadow: 1px 2px 0 #0004;
 				}
 	
-				> button {
+				button {
 					border: 0;
 					margin-top: 2rem;
 

@@ -13,6 +13,25 @@ const urls = {
 	github: "https://github.com/benevolent-games/",
 }
 
+const games = [
+	["humanoid", "explore the benevolent testing facility"],
+	["aeterna", "open world rpg"],
+]
+
+const tools = [
+	["nubs", "mobile thumbsticks"],
+	["swipe-snail", "fastest web swipe-panels around"],
+	// ["humanoid", "1st/3rd person gameplay template"],
+	// ["terrarium", "generate infinite outdoor worlds"],
+	// ["underworld", "generate infinite dungeons"],
+	// ["pilot", "pathfinding"],
+	// ["shad", "shader devlab"],
+	// ["octo", "netcode for action games"],
+	// ["weaver", "netcode for rts games"],
+	// ["sparrow-rtc", "webrtc connectivity library"],
+	// ["mouseplay", "pointer-lock cursor systems"],
+]
+
 export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 
 <!doctype html>
@@ -26,12 +45,16 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 
 	${
 		mode === "production"
-		? html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome.js")}"></script>`
-		: html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome-mock.js")}"></script>`
+			? html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome.js")}"></script>`
+			: html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome-mock.js")}"></script>`
 	}
 
 	<style>
-		main > h1 > .logo-unit { display: none; }
+		.logo-unit {
+			opacity: 0.1;
+			transform: scale(0.8);
+			transition: all 5s ease;
+		}
 	</style>
 </head>
 <body>
@@ -48,21 +71,22 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 	<main>
 
 		<section data-panel=game>
-			${[
-					{
-						name: "humanoid",
-					},
-				].map((game, index) => html`
+			${games.map(([name, description], index) => html`
 
-				<section data-game="${game.name}" ${attrBool("data-active", index === 0)}>
-					<header style="background-image: url('/assets/images/wallpapers/${game.name}.webp')">
-						<h1>${game.name}</h1>
-						<p>explore the benevolent testing facility</p>
+				<section data-game="${name}" ${attrBool("data-active", index === 0)}>
+					<header style="background-image: url('/assets/games/${name}/wallpaper.webp')">
+						<h1>
+							<img src="/assets/games/${name}/label.webp" alt="${name}"/>
+						</h1>
+						<p>${description}</p>
 						<button>
 							${svg(circleTriangleRightFillSvg)}
 							<span>play</span>
 						</button>
 					</header>
+					<div>
+						<p></p>
+					</div>
 				</section>
 			`)}
 		</section>
@@ -79,34 +103,21 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 
 			<section class=games>
 				<ul>
-					<li tabindex=0>
-						<img src="/assets/images/posters/humanoid.webp" alt="humanoid"/>
-					</li>
-					<li tabindex=0>
-						<img src="/assets/images/posters/aeterna.webp" alt="aeterna"/>
-					</li>
+					${games.map(([name, description]) => html`
+						<li tabindex=0>
+							<img src="/assets/games/${name}/poster.webp" alt="${name}"/>
+						</li>
+					`)}
 				</ul>
 			</section>
 
 			<section class=tools>
 				<h2>developer tools</h2>
 				<nav>
-					${[
-						["humanoid", "1st/3rd person gameplay template"],
-						["terrarium", "generate infinite outdoor worlds"],
-						["underworld", "generate infinite dungeons"],
-						["pilot", "pathfinding"],
-						["shad", "shader devlab"],
-						["octo", "netcode for action games"],
-						["weaver", "netcode for rts games"],
-						["sparrow-rtc", "webrtc connectivity library"],
-						["mouseplay", "pointer-lock cursor systems"],
-						["nubs", "mobile thumbsticks"],
-						["swipe-snail", "fastest web swipe-panels around"],
-					].map(([name, description]) => html`
+					${tools.map(([name, description]) => html`
 						<a
 							href="https://github.com/benevolent-games/${name}#readme"
-							style="background-image: url('/assets/images/tools/tools.webp')">
+							style="background-image: url('/assets/tools/tools.webp')">
 								<span data-name>${name}</span>
 								<span data-description>${description}</span>
 						</a>
