@@ -214,7 +214,10 @@ xio-menu {
 		}
 	
 		section.tools {
-			nav {
+			> * + * {
+				margin-top: 1rem;
+			}
+			> nav {
 				list-style: none;
 				display: flex;
 				flex-direction: row;
@@ -280,14 +283,16 @@ xio-menu {
 		}
 	
 		section.community {
+			> * + * {
+				margin-top: 1rem;
+			}
 			> ul {
 				list-style: none;
 			}
-			nav {
+			> nav {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				margin-top: 2em;
 				a {
 					margin-top: 0.5em;
 					max-width: max-content;
