@@ -1,11 +1,12 @@
 
 import {BenevolentWebsiteContext} from "../types.js"
-import {html, html as svg} from "xiome/x/toolbox/hamster-html/html.js"
+import {html, html as svg, attrBool} from "xiome/x/toolbox/hamster-html/html.js"
 
 import headBasicsHtml from "../partials/head-basics.html.js"
 
 import githubSvg from "../icons/akar/github.svg.js"
 import discordSvg from "../icons/akar/discord.svg.js"
+import circleTriangleRightFillSvg from "../icons/akar/circle-triangle-right-fill.svg.js"
 
 const urls = {
 	discord: "https://discord.gg/BnZx2utdev",
@@ -34,26 +35,47 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 	</style>
 </head>
 <body>
+	<div class=menubar>
+		<xio-menu sticky initially-hidden>
+			<xio-menu-item>
+				<xiome-my-avatar></xiome-my-avatar>
+				<xiome-login-panel slot=panel show-logout>
+					<xiome-my-account></xiome-my-account>
+				</xiome-login-panel>
+			</xio-menu-item>
+		</xio-menu>
+	</div>
 	<main>
-		<div class=menubar>
-			<xio-menu sticky initially-hidden>
-				<xio-menu-item>
-					<xiome-my-avatar></xiome-my-avatar>
-					<xiome-login-panel slot=panel show-logout>
-						<xiome-my-account></xiome-my-account>
-					</xiome-login-panel>
-				</xio-menu-item>
-			</xio-menu>
-		</div>
-		<h1>
-			<div class="logo">
-				<div class="logo-unit">
-					<img src="/assets/benevolent.svg" alt=""/>
-					<span>benevolent.games</span>
+
+		<section data-panel=game>
+			${[
+					{
+						name: "humanoid",
+					},
+				].map((game, index) => html`
+
+				<section data-game="${game.name}" ${attrBool("data-active", index === 0)}>
+					<header style="background-image: url('/assets/images/wallpapers/${game.name}.webp')">
+						<h1>${game.name}</h1>
+						<p>explore the benevolent testing facility</p>
+						<button>
+							${svg(circleTriangleRightFillSvg)}
+							<span>play</span>
+						</button>
+					</header>
+				</section>
+			`)}
+		</section>
+
+		<section data-panel=primary>
+			<h1>
+				<div class="logo">
+					<div class="logo-unit">
+						<img src="/assets/benevolent.svg" alt=""/>
+						<span>benevolent.games</span>
+					</div>
 				</div>
-			</div>
-		</h1>
-		<div class=slice>
+			</h1>
 
 			<section class=games>
 				<ul>
@@ -111,7 +133,7 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 					</a>
 				</nav>
 			</section>
-		</div>
+		</section>
 	</main>
 </body>
 </html>
