@@ -42,7 +42,7 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 	<script defer src="/node_modules/es-module-shims/dist/es-module-shims.wasm.js"></script>
 	<script defer type=importmap-shim src="${v("/importmap.json")}"></script>
 	<script defer type=module-shim src="${v("/main.js")}"></script>
-
+	<script defer type=module src="/node_modules/@benev/swipe-snail/x/elements.js"></script>
 	${
 		mode === "production"
 			? html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome.js")}"></script>`
@@ -102,13 +102,17 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 			</h1>
 
 			<section class=games>
-				<ul>
+			<ul>
+			<swipe-snail>
 					${games.map(([name, description]) => html`
+					<snail-panel>
 						<li tabindex=0>
 							<img src="/assets/games/${name}/poster.webp" alt="${name}"/>
 						</li>
+					</snail-panel>
 					`)}
-				</ul>
+			</swipe-snail>
+			</ul>
 			</section>
 
 			<section class=tools>
