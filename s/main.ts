@@ -1,12 +1,18 @@
 
-async function animationFrame() {
-	return new Promise(resolve => requestAnimationFrame(resolve))
-}
+import {runLogoAnimation} from "./utils/run-logo-animation.js"
+import {setupGameButtonClicksToOpenPanels} from "./utils/setup-game-button-clicks-to-open-panel.js"
 
-void async function introAnimation() {
-	const {style} = document.querySelector<HTMLElement>(".logo-unit")!
+runLogoAnimation({
+	element: document.querySelector(".logo-unit")!,
+	style: {
+		opacity: "1",
+		transform: "scale(1)",
+	},
+})
 
-	await animationFrame()
-	style.opacity = "1"
-	style.transform = "scale(1)"
-}()
+setupGameButtonClicksToOpenPanels({
+	swipeSnail: document.querySelector(`swipe-snail`)!,
+	gamePanel: document.querySelector(`[data-panel="game"]`)!,
+	buttons: document.querySelectorAll(`.games [data-game]`),
+	games: document.querySelectorAll(`[data-panel="game"] [data-game]`),
+})

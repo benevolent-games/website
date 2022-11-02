@@ -6,18 +6,20 @@
 		margin: auto;
 	}
 
-	section[data-panel="game"] {
-		display: none;
+	[data-panel="game"] {
+		text-align: left;
+		// display: none;
 		width: 100%;
 
 		[data-game] {
+			display: none;
+			&[data-active] { display: flex; }
+
+			flex-direction: column;
 			width: 100%;
 			min-height: 100vh;
 			max-width: 100em;
 			margin: auto;
-
-			display: flex;
-			flex-direction: column;
 
 			> header {
 				display: flex;
@@ -96,8 +98,8 @@
 		}
 	}
 
-	section[data-panel="primary"] {
-		max-width: 960px;
+	[data-panel="primary"] {
+		text-align: left;
 		margin: auto;
 		padding: 0 1em;
 		padding-bottom: 10em;
@@ -174,27 +176,27 @@
 						user-drag: none;
 					}
 	
-					&::before {
-						opacity: 0;
-						transition: opacity var(--anim);
+					// &::before {
+					// 	opacity: 0;
+					// 	transition: opacity var(--anim);
 	
-						content: "coming soon";
-						display: flex;
-						position: absolute;
-						align-items: center;
-						justify-content: center;
-						inset: 0;
-						margin: auto;
+					// 	content: "coming soon";
+					// 	display: flex;
+					// 	position: absolute;
+					// 	align-items: center;
+					// 	justify-content: center;
+					// 	inset: 0;
+					// 	margin: auto;
 	
-						background: #111e;
-						color: white;
-					}
+					// 	background: #111e;
+					// 	color: white;
+					// }
 	
 					&:is(:hover, :focus) {
 						transform: scale(1.05);
-						&::before {
-							opacity: 1;
-						}
+						// &::before {
+						// 	opacity: 1;
+						// }
 					}
 				}
 			}

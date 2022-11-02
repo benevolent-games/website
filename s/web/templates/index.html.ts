@@ -35,6 +35,7 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 	...context,
 	htmlClass: "home",
 	headContent: html`
+		<script defer type=module-shim src="${context.v("/node_modules/@benev/swipe-snail/x/elements.js")}"></script>
 		<script defer type=module-shim src="${context.v("/main.js")}"></script>
 		<style>
 			.logo-unit {
@@ -45,87 +46,96 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 		</style>
 	`,
 	mainContent: html`
-		<section data-panel=game>
-			${games.map(([name, description], index) => html`
+		<swipe-snail>
+			<snail-panel data-home>
 
-				<section data-game="${name}" ${attrBool("data-active", index === 0)}>
-					<header style="background-image: url('/assets/games/${name}/wallpaper.webp')">
-						<h1>
-							<img src="/assets/games/${name}/label.webp" alt="${name}"/>
-						</h1>
-						<p>${description}</p>
-						<button>
-							${svg(circleTriangleRightFillSvg)}
-							<span>play</span>
-						</button>
-					</header>
-					<div>
-						<p></p>
-					</div>
-				</section>
-			`)}
-		</section>
+				<section data-panel=primary>
+					<h1>
+						<div class="logo">
+							<div class="logo-unit">
+								<img src="/assets/benevolent.svg" alt=""/>
+								<span>benevolent.games</span>
+							</div>
+						</div>
+					</h1>
 
-		<section data-panel=primary>
-			<h1>
-				<div class="logo">
-					<div class="logo-unit">
-						<img src="/assets/benevolent.svg" alt=""/>
-						<span>benevolent.games</span>
-					</div>
-				</div>
-			</h1>
-
-			<section class=games>
-				<ul>
-					${games.map(([name, description]) => html`
-						<li tabindex=0>
-							<img src="/assets/games/${name}/poster.webp" alt="${name}"/>
-						</li>
-					`)}
-				</ul>
-			</section>
-
-			<section class=tools>
-				<h2>developer tools</h2>
-				<nav>
-					${tools.map(([name, description]) => html`
-						<a
-							href="https://github.com/benevolent-games/${name}#readme"
-							style="background-image: url('/assets/tools/tools.webp')">
-								<span data-name>${name}</span>
-								<span data-description>${description}</span>
-						</a>
-					`)}
-				</nav>
-			</section>
-
-			<section class=community>
-				<h2>community-powered games</h2>
-				<div class=split>
-					<div class=content>
-						<p>we're making games, and along the way, building tools to improve the indie web game development ecosystem.</p>
+					<section class=games>
 						<ul>
-							<li>📖 everything we make is open source</li>
-							<li>📲 runs on mobile and computer</li>
-							<li>💸 community funded</li>
+							${games.map(([name, description]) => html`
+								<li data-game="${name}" tabindex=0>
+									<img src="/assets/games/${name}/poster.webp" alt="${name}"/>
+								</li>
+							`)}
 						</ul>
-					</div>
-					<div class=subscriptions>
-						<xiome-store-subscription-catalog></xiome-store-subscription-catalog>
-					</div>
-				</div>
-				<nav>
-					<a data-link=discord target=_blank href="${urls.discord}">
-						<div>${svg(discordSvg)}</div>
-						<p>join our community on <strong>discord</strong></p>
-					</a>
-					<a data-link=github href="${urls.github}">
-						<div>${svg(githubSvg)}</div>
-						<p>checkout the <strong>github</strong> repos</p>
-					</a>
-				</nav>
-			</section>
-		</section>
+					</section>
+
+					<section class=tools>
+						<h2>developer tools</h2>
+						<nav>
+							${tools.map(([name, description]) => html`
+								<a
+									href="https://github.com/benevolent-games/${name}#readme"
+									style="background-image: url('/assets/tools/tools.webp')">
+										<span data-name>${name}</span>
+										<span data-description>${description}</span>
+								</a>
+							`)}
+						</nav>
+					</section>
+
+					<section class=community>
+						<h2>community-powered games</h2>
+						<div class=split>
+							<div class=content>
+								<p>we're making games, and along the way, building tools to improve the indie web game development ecosystem.</p>
+								<ul>
+									<li>📖 everything we make is open source</li>
+									<li>📲 runs on mobile and computer</li>
+									<li>💸 community funded</li>
+								</ul>
+							</div>
+							<div class=subscriptions>
+								<xiome-store-subscription-catalog></xiome-store-subscription-catalog>
+							</div>
+						</div>
+						<nav>
+							<a data-link=discord target=_blank href="${urls.discord}">
+								<div>${svg(discordSvg)}</div>
+								<p>join our community on <strong>discord</strong></p>
+							</a>
+							<a data-link=github href="${urls.github}">
+								<div>${svg(githubSvg)}</div>
+								<p>checkout the <strong>github</strong> repos</p>
+							</a>
+						</nav>
+					</section>
+				</section>
+
+			</snail-panel>
+			<snail-panel>
+
+				<section data-panel=game>
+					${games.map(([name, description], index) => html`
+
+						<section data-game="${name}" ${attrBool("data-active", index === 0)}>
+							<header style="background-image: url('/assets/games/${name}/wallpaper.webp')">
+								<h1>
+									<img src="/assets/games/${name}/label.webp" alt="${name}"/>
+								</h1>
+								<p>${description}</p>
+								<button>
+									${svg(circleTriangleRightFillSvg)}
+									<span>play</span>
+								</button>
+							</header>
+							<div>
+								<p></p>
+							</div>
+						</section>
+					`)}
+				</section>
+
+			</snail-panel>
+		</swipe-snail>
 	`,
 })
