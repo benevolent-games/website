@@ -133,7 +133,7 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 				<section data-panel=game>
 					${games.map(([name, description], index) => html`
 	
-						<section data-game="${name}">
+						<section data-game="${name}" ${attrBool("data-active", index === 0)}>
 							<header style="background-image: url('/assets/games/${name}/wallpaper.webp')">
 								<h1>
 									<img src="/assets/games/${name}/label.webp" alt="${name}"/>

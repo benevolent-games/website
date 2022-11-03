@@ -12,7 +12,10 @@ async function activateSpecificGameInPanel(name: string) {
 
 	for (const game of games) {
 		const isSpecified = game.getAttribute("data-game") === name
-		game.hidden = !isSpecified
+		if (isSpecified)
+			game.setAttribute("data-active", "")
+		else
+			game.removeAttribute("data-active")
 	}
 }
 

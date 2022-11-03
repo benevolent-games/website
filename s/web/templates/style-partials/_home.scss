@@ -26,17 +26,14 @@ xio-menu {
 		width: 100%;
 
 		[data-game] {
+			display: none;
+			&[data-active] { display: flex; }
+
+			flex-direction: column;
 			width: 100%;
 			min-height: 100vh;
 			max-width: 100em;
 			margin: auto;
-
-			display: flex;
-			flex-direction: column;
-
-			&[hidden] {
-				display: none !important;
-			}
 
 			> header {
 				display: flex;
@@ -192,27 +189,27 @@ xio-menu {
 						user-drag: none;
 					}
 	
-					&::before {
-						opacity: 0;
-						transition: opacity var(--anim);
+					// &::before {
+					// 	opacity: 0;
+					// 	transition: opacity var(--anim);
 	
-						content: "coming soon";
-						display: flex;
-						position: absolute;
-						align-items: center;
-						justify-content: center;
-						inset: 0;
-						margin: auto;
+					// 	content: "coming soon";
+					// 	display: flex;
+					// 	position: absolute;
+					// 	align-items: center;
+					// 	justify-content: center;
+					// 	inset: 0;
+					// 	margin: auto;
 	
-						background: #111e;
-						color: white;
-					}
+					// 	background: #111e;
+					// 	color: white;
+					// }
 	
 					&:is(:hover, :focus) {
 						transform: scale(1.05);
-						&::before {
-							opacity: 1;
-						}
+						// &::before {
+						// 	opacity: 1;
+						// }
 					}
 				}
 			}
