@@ -3,6 +3,7 @@
 @use "style-partials/links";
 @use "style-partials/home";
 @use "style-partials/game";
+@use "style-partials/admin";
 
 html {
 	--link-color: #ffe372;
@@ -13,4 +14,18 @@ html {
 
 html, body, main {
 	height: 100%;
+}
+
+xio-menu {
+	color: #222;
+	--menu-margin: 1em;
+	--avatar-size: 2em;
+	--menu-background: transparent;
+	--menu-gapsize: 0;
+	xiome-my-avatar {
+		display: block;
+	}
+	::part(xio-avatar) {
+		display: block;
+	}
 }

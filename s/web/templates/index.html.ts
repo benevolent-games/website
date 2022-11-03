@@ -2,11 +2,10 @@
 import {BenevolentWebsiteContext} from "../types.js"
 import {html, html as svg, attrBool} from "xiome/x/toolbox/hamster-html/html.js"
 
-import headBasicsHtml from "../partials/head-basics.html.js"
-
 import githubSvg from "../icons/akar/github.svg.js"
 import discordSvg from "../icons/akar/discord.svg.js"
 import circleTriangleRightFillSvg from "../icons/akar/circle-triangle-right-fill.svg.js"
+import pageHtml from "../partials/page.html.js"
 
 const urls = {
 	discord: "https://discord.gg/BnZx2utdev",
@@ -32,45 +31,20 @@ const tools = [
 	// ["mouseplay", "pointer-lock cursor systems"],
 ]
 
-export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
-
-<!doctype html>
-<html class=home>
-<head>
-	${headBasicsHtml({...options, mode, v, title: "benevolent.games"})}
-
-	<script defer type=importmap-shim src="${v("/importmap.json")}"></script>
-	<script defer type=module-shim src="${v("/main.js")}"></script>
-
-	${
-		mode === "production"
-			? html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome.js")}"></script>`
-			: html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome-mock.js")}"></script>`
-	}
-
-	<script defer src="/node_modules/es-module-shims/dist/es-module-shims.wasm.js"></script>
-
-	<style>
-		.logo-unit {
-			opacity: 0.1;
-			transform: scale(0.8);
-			transition: all 5s ease;
-		}
-	</style>
-</head>
-<body>
-	<div class=menubar>
-		<xio-menu sticky initially-hidden>
-			<xio-menu-item>
-				<xiome-my-avatar></xiome-my-avatar>
-				<xiome-login-panel slot=panel show-logout>
-					<xiome-my-account></xiome-my-account>
-				</xiome-login-panel>
-			</xio-menu-item>
-		</xio-menu>
-	</div>
-	<main>
-
+export default (context: BenevolentWebsiteContext) => pageHtml({
+	...context,
+	htmlClass: "home",
+	headContent: html`
+		<script defer type=module-shim src="${context.v("/main.js")}"></script>
+		<style>
+			.logo-unit {
+				opacity: 0.1;
+				transform: scale(0.8);
+				transition: all 5s ease;
+			}
+		</style>
+	`,
+	mainContent: html`
 		<section data-panel=game>
 			${games.map(([name, description], index) => html`
 
@@ -152,13 +126,6 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 					`)}
 				</nav>
 			</section>
-
-			<xiome-store-connect></xiome-store-connect>
-			<xiome-store-subscription-planning></xiome-store-subscription-planning>
-
 		</section>
-	</main>
-</body>
-</html>
-
-`
+	`,
+})
