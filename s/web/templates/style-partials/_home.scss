@@ -286,9 +286,27 @@ xio-menu {
 			> * + * {
 				margin-top: 1rem;
 			}
-			> ul {
-				list-style: none;
+
+			.split {
+				display: flex;
+				flex-direction: row;
+				> div {
+					flex: 1 1 50%;
+				}
+				.subscriptions {
+					outline: 1px solid red;
+				}
 			}
+
+			.content {
+				> * + * {
+					margin-top: 1rem;
+				}
+				ul {
+					list-style: none;
+				}
+			}
+
 			> nav {
 				display: flex;
 				flex-direction: column;

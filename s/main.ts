@@ -6,9 +6,6 @@ async function animationFrame() {
 void async function introAnimation() {
 	const {style} = document.querySelector<HTMLElement>(".logo-unit")!
 
-	// await animationFrame()
-	// style.transition = "all ease 10s"
-
 	await animationFrame()
 	style.opacity = "1"
 	style.transform = "scale(1)"

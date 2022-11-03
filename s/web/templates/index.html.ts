@@ -39,7 +39,6 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 <head>
 	${headBasicsHtml({...options, mode, v, title: "benevolent.games"})}
 
-	<script defer src="/node_modules/es-module-shims/dist/es-module-shims.wasm.js"></script>
 	<script defer type=importmap-shim src="${v("/importmap.json")}"></script>
 	<script defer type=module-shim src="${v("/main.js")}"></script>
 
@@ -48,6 +47,8 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 			? html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome.js")}"></script>`
 			: html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome-mock.js")}"></script>`
 	}
+
+	<script defer src="/node_modules/es-module-shims/dist/es-module-shims.wasm.js"></script>
 
 	<style>
 		.logo-unit {
@@ -111,6 +112,33 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 				</ul>
 			</section>
 
+			<section class=community>
+				<h2>community-powered games</h2>
+				<div class=split>
+					<div class=content>
+						<p>we're making games, and along the way, building tools to improve the indie web game development ecosystem.</p>
+						<ul>
+							<li>📖 everything we make is open source</li>
+							<li>📲 runs on mobile and computer</li>
+							<li>💸 community funded</li>
+						</ul>
+					</div>
+					<div class=subscriptions>
+						<xiome-store-subscription-catalog></xiome-store-subscription-catalog>
+					</div>
+				</div>
+				<nav>
+					<a data-link=discord target=_blank href="${urls.discord}">
+						<div>${svg(discordSvg)}</div>
+						<p>join our community on <strong>discord</strong></p>
+					</a>
+					<a data-link=github href="${urls.github}">
+						<div>${svg(githubSvg)}</div>
+						<p>checkout the <strong>github</strong> repos</p>
+					</a>
+				</nav>
+			</section>
+
 			<section class=tools>
 				<h2>developer tools</h2>
 				<nav>
@@ -125,25 +153,9 @@ export default ({mode, v, ...options}: BenevolentWebsiteContext) => html`
 				</nav>
 			</section>
 
-			<section class=community>
-				<h2>community-powered games</h2>
-				<p>we're making games, and along the way, building tools to improve the indie web game development ecosystem.</p>
-				<ul>
-					<li>📖 everything we make is open source</li>
-					<li>📲 runs on mobile and computer</li>
-					<li>💸 community funded</li>
-				</ul>
-				<nav>
-					<a data-link=discord target=_blank href="${urls.discord}">
-						<div>${svg(discordSvg)}</div>
-						<p>join our community on <strong>discord</strong></p>
-					</a>
-					<a data-link=github href="${urls.github}">
-						<div>${svg(githubSvg)}</div>
-						<p>checkout the <strong>github</strong> repos</p>
-					</a>
-				</nav>
-			</section>
+			<xiome-store-connect></xiome-store-connect>
+			<xiome-store-subscription-planning></xiome-store-subscription-planning>
+
 		</section>
 	</main>
 </body>
