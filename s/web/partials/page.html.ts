@@ -37,6 +37,9 @@ export default ({
 				<xiome-my-avatar></xiome-my-avatar>
 				<xiome-login-panel slot=panel show-logout>
 					<xiome-my-account></xiome-my-account>
+					<br/>
+					<xiome-store-subscription-status></xiome-store-subscription-status>
+					<xiome-store-billing-area></xiome-store-billing-area>
 				</xiome-login-panel>
 			</xio-menu-item>
 		</xio-menu>

@@ -86,6 +86,20 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 				</ul>
 			</section>
 
+			<section class=tools>
+				<h2>developer tools</h2>
+				<nav>
+					${tools.map(([name, description]) => html`
+						<a
+							href="https://github.com/benevolent-games/${name}#readme"
+							style="background-image: url('/assets/tools/tools.webp')">
+								<span data-name>${name}</span>
+								<span data-description>${description}</span>
+						</a>
+					`)}
+				</nav>
+			</section>
+
 			<section class=community>
 				<h2>community-powered games</h2>
 				<div class=split>
@@ -110,20 +124,6 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 						<div>${svg(githubSvg)}</div>
 						<p>checkout the <strong>github</strong> repos</p>
 					</a>
-				</nav>
-			</section>
-
-			<section class=tools>
-				<h2>developer tools</h2>
-				<nav>
-					${tools.map(([name, description]) => html`
-						<a
-							href="https://github.com/benevolent-games/${name}#readme"
-							style="background-image: url('/assets/tools/tools.webp')">
-								<span data-name>${name}</span>
-								<span data-description>${description}</span>
-						</a>
-					`)}
 				</nav>
 			</section>
 		</section>
