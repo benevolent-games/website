@@ -6,6 +6,10 @@
 		margin: auto;
 	}
 
+	swipe-snail * {
+		word-break: normal !important;
+	}
+
 	[data-panel="game"] {
 		text-align: left;
 		// display: none;
