@@ -46,8 +46,8 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 		</style>
 	`,
 	mainContent: html`
-		<swipe-snail>
-			<snail-panel data-home>
+		<snail-system>
+			<snail-panel crossfade data-home>
 
 				<section data-panel=primary>
 					<h1>
@@ -112,7 +112,7 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 				</section>
 
 			</snail-panel>
-			<snail-panel>
+			<snail-panel crossfade>
 
 				<section data-panel=game>
 					${games.map(([name, description], index) => html`
@@ -136,6 +136,6 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 				</section>
 
 			</snail-panel>
-		</swipe-snail>
+		</snail-system>
 	`,
 })

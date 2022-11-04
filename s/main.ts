@@ -11,7 +11,7 @@ runLogoAnimation({
 })
 
 setupGameButtonClicksToOpenPanels({
-	swipeSnail: document.querySelector(`swipe-snail`)!,
+	snailSystem: document.querySelector(`snail-system`)!,
 	gamePanel: document.querySelector(`[data-panel="game"]`)!,
 	buttons: document.querySelectorAll(`.games [data-game]`),
 	games: document.querySelectorAll(`[data-panel="game"] [data-game]`),

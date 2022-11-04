@@ -1,14 +1,14 @@
 
-import type {SwipeSnail} from "@benev/swipe-snail/x/elements/swipe-snail.js"
+import type {SnailSystem} from "@benev/swipe-snail/x/elements/system/element.js"
 import {activateSpecificGameInPanel} from "./activate-specific-game-in-panel.js"
 
 export function setupGameButtonClicksToOpenPanels({
-		swipeSnail,
+		snailSystem,
 		gamePanel,
 		buttons,
 		games,
 	}: {
-		swipeSnail: SwipeSnail
+		snailSystem: SnailSystem
 		gamePanel: HTMLElement
 		buttons: HTMLElement[] | NodeListOf<HTMLElement>
 		games: HTMLElement[] | NodeListOf<HTMLElement>
@@ -18,7 +18,7 @@ export function setupGameButtonClicksToOpenPanels({
 		const name = button.getAttribute("data-game")!
 		button.onclick = () => {
 			activateSpecificGameInPanel(games, name)
-			swipeSnail.go(gamePanel)
+			snailSystem.go(gamePanel)
 		}
 	}
 }
