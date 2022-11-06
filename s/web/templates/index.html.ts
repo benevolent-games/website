@@ -47,7 +47,7 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 	`,
 	mainContent: html`
 		<snail-system>
-			<snail-panel crossfade data-home>
+			<snail-panel data-route=primary crossfade data-home>
 
 				<section data-panel=primary>
 					<h1>
@@ -63,7 +63,9 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 						<ul>
 							${games.map(([name, description]) => html`
 								<li data-game="${name}" tabindex=0>
-									<img src="/assets/games/${name}/poster.webp" alt="${name}"/>
+									<a href="/#/${name}">
+										<img src="/assets/games/${name}/poster.webp" alt="${name}"/>
+									</a>
 								</li>
 							`)}
 						</ul>
@@ -112,7 +114,7 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 				</section>
 
 			</snail-panel>
-			<snail-panel crossfade>
+			<snail-panel data-route=game crossfade>
 
 				<section data-panel=game>
 					${games.map(([name, description], index) => html`
