@@ -33,13 +33,10 @@ runLogoAnimation({
 	},
 })
 
-let routingCount = 0
 let lastGame = "humanoid"
 
-const router = hashrouter(route => {
-	const currentCount = routingCount++
-
-	const go = currentCount === 0
+const router = hashrouter((route, count) => {
+	const go = count === 0
 		? elements.snail.system.goInstantly
 		: elements.snail.system.go
 
