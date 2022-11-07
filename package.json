@@ -8,8 +8,8 @@
 	"type": "module",
 	"files": [],
 	"scripts": {
-		"build": "run-s clean && run-p typescript importmap links sass && run-p web",
-		"build-production": "run-s clean && run-p typescript importmap links sass && run-p web-production",
+		"build": "run-s clean && run-p typescript importmap links sass && run-s bundle web",
+		"build-production": "run-s clean && run-p typescript importmap links sass && run-s bundle web-production",
 		"dev": "run-p start watch",
 		"clean": "rm -rf x && mkdir -p x",
 		"importmap": "importly --host=node_modules < package-lock.json > x/importmap.json",
@@ -21,6 +21,7 @@
 		"web": "node x/web/build.js debug",
 		"web-production": "node x/web/build.js production",
 		"sass": "sass s/web/templates/:x/",
+		"bundle": "rollup -p @rollup/plugin-node-resolve x/main.js --file x/main.bundle.js",
 		"watch": "run-p watch-typescript watch-web watch-sass",
 		"watch-typescript": "npm run -s typescript -- -w",
 		"watch-web": "chokidar \"x/web/**/*\" -c \"npm run web -s && echo 'rebuilt web'\"",
@@ -36,12 +37,14 @@
 		"xiome": "^0.0.32"
 	},
 	"devDependencies": {
+		"@rollup/plugin-node-resolve": "^15.0.1",
 		"chokidar": "^3.5.3",
 		"chokidar-cli": "^3.0.0",
 		"glob": "^8.0.3",
 		"http-server": "^14.1.0",
 		"importly": "^0.2.0",
 		"npm-run-all": "^4.1.5",
+		"rollup": "^3.2.5",
 		"sass": "^1.56.0",
 		"typescript": "^4.5.5"
 	},

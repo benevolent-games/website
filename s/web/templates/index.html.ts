@@ -35,8 +35,21 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 	...context,
 	htmlClass: "home",
 	headContent: html`
-		<script defer type=module-shim src="${context.v("/node_modules/@benev/swipe-snail/x/elements.js")}"></script>
-		<script defer type=module-shim src="${context.v("/main.js")}"></script>
+		${context.mode === "production"
+			? html`
+				<script
+					defer
+					type=module
+					src="${context.v("/main.bundle.js")}">
+				</script>
+			`
+			: html`
+				<script
+					defer
+					type=module-shim
+					src="${context.v("/main.js")}">
+				</script>
+			`}
 		<style>
 			.logo-unit {
 				opacity: 0.1;

@@ -1,4 +1,6 @@
 
+import "@benev/swipe-snail/x/elements.js"
+
 import {hashrouter} from "@benev/swipe-snail/x/hashrouter.js"
 import {runLogoAnimation} from "./utils/run-logo-animation.js"
 import {SnailSystem} from "@benev/swipe-snail/x/elements/system/element.js"

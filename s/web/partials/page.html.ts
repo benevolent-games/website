@@ -25,8 +25,8 @@ export default ({
 	${headContent}
 	${
 		mode === "production"
-			? html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome.js")}"></script>`
-			: html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome-mock.js")}"></script>`
+			? html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome.bundle.min.js")}"></script>`
+			: html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome-mock.bundle.min.js")}"></script>`
 	}
 	<script defer src="/node_modules/es-module-shims/dist/es-module-shims.wasm.js"></script>
 </head>
