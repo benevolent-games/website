@@ -43,6 +43,28 @@ jobs:
     - name: 🧪 test
       run: npm test
 
+    - name: 🚚 tracking ignored stuff
+      run: |
+        sed -i.bak -e '/^\/node_modules$/d' .gitignore
+        sed -i.bak -e '/^\/x$/d' .gitignore
+
+    - name: 🗃️ reconstitute node_modules for production
+      run: |
+        rm -rf node_modules
+        npm ci --production
+
+    - name: 🗃️ copy files
+      run: |
+        rm -rf x/node_modules x/s x/assets
+        cp -r node_modules/ x/
+        cp -r s/ x/
+        cp -r assets/ x/
+
+    - name: ✍️ write cname and nojekyll
+      run: |
+        touch .nojekyll
+        echo "benevolent.games" > CNAME
+
     - name: Setup Pages
       uses: actions/configure-pages@v2
 
