@@ -1,5 +1,5 @@
 
-name: Deploy static content to Pages
+name: release
 
 on:
   push:
@@ -62,8 +62,8 @@ jobs:
 
     - name: ✍️ write cname and nojekyll
       run: |
-        touch .nojekyll
-        echo "benevolent.games" > CNAME
+        touch x/.nojekyll
+        echo "benevolent.games" > x/CNAME
 
     - name: Setup Pages
       uses: actions/configure-pages@v2
