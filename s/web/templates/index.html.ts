@@ -20,11 +20,11 @@ const games = [
 const tools = [
 	["nubs", "mobile thumbsticks"],
 	["swipe-snail", "fastest web swipe-panels around"],
+	["shad", "shader devlab"],
 	// ["humanoid", "1st/3rd person gameplay template"],
 	// ["terrarium", "generate infinite outdoor worlds"],
 	// ["underworld", "generate infinite dungeons"],
 	// ["pilot", "pathfinding"],
-	// ["shad", "shader devlab"],
 	// ["octo", "netcode for action games"],
 	// ["weaver", "netcode for rts games"],
 	// ["sparrow-rtc", "webrtc connectivity library"],
