@@ -28,7 +28,7 @@
 		"start": "http-server x"
 	},
 	"dependencies": {
-		"@benev/swipe-snail": "^0.0.0-dev.0",
+		"@benev/swipe-snail": "^0.0.0",
 		"@chasemoskal/magical": "^0.0.1",
 		"@chasemoskal/snapstate": "^0.0.8",
 		"es-module-shims": "^1.4.6",

@@ -1,8 +1,7 @@
 
-import {hashrouter} from "./toolbox/hashrouter.js"
+import {hashrouter} from "@benev/swipe-snail/x/hashrouter.js"
 import {runLogoAnimation} from "./utils/run-logo-animation.js"
-import {PanelChangeEvent} from "@benev/swipe-snail/x/events/panel-change.js"
-import type {SnailSystem} from "@benev/swipe-snail/x/elements/system/element.js"
+import {SnailSystem} from "@benev/swipe-snail/x/elements/system/element.js"
 import {activateSpecificGameInPanel} from "./utils/activate-specific-game-in-panel.js"
 
 const elements = {
@@ -15,15 +14,9 @@ const elements = {
 			document
 				.querySelector<SnailSystem>(`snail-system`)!
 		),
-		panels: {
-			primary: (
-				document
-					.querySelector<HTMLElement>(`[data-panel="primary"]`)!
-			),
-			game: (
-				document
-					.querySelector<HTMLElement>(`[data-panel="game"]`)!
-			),
+		panel(route: string) {
+			return document
+				.querySelector<HTMLElement>(`[data-route="${route}"]`)!
 		},
 	},
 	games: (
@@ -40,28 +33,49 @@ runLogoAnimation({
 	},
 })
 
-const router = hashrouter({
-	"#/": () => {
-		console.log("setup HOME")
-		elements.snail.system.go(elements.snail.panels.primary)
-	},
-	"#/humanoid": () => {
-		console.log("setup HUMANOID")
-		activateSpecificGameInPanel(elements.games, "humanoid")
-		elements.snail.system.go(elements.snail.panels.game)
-	},
-	"#/aeterna": () => {
-		console.log("setup AETERNA")
-		activateSpecificGameInPanel(elements.games, "aeterna")
-		elements.snail.system.go(elements.snail.panels.game)
-	},
+let routingCount = 0
+let lastGame = "humanoid"
+
+const router = hashrouter(route => {
+	const currentCount = routingCount++
+
+	const go = currentCount === 0
+		? elements.snail.system.goInstantly
+		: elements.snail.system.go
+
+	switch (route) {
+
+		case "#/":
+			go(elements.snail.panel(route))
+			return
+
+		case "#/humanoid":
+			go(elements.snail.panel("#/game"))
+			activateSpecificGameInPanel(elements.games, "humanoid")
+			lastGame = "humanoid"
+			return
+
+		case "#/aeterna":
+			go(elements.snail.panel("#/game"))
+			activateSpecificGameInPanel(elements.games, "aeterna")
+			lastGame = "aeterna"
+			return
+
+		default:
+			console.warn(`unknown route "${route}"`)
+	}
 })
 
-PanelChangeEvent
-	.listen(elements.snail.system)
-	.handle(event => {
-		const panel = event.detail
-		const route = panel.getAttribute("data-route")
-		console.log("PANEL CHANGE", route, panel)
-		router.go(route === "game" ? "#/humanoid" : "#/")
-	})
+SnailSystem
+	.events
+	.PanelChangeEvent
+		.listen(elements.snail.system)
+		.handle(event => {
+			const panel = event.detail
+			const route = panel.getAttribute("data-route")
+			router.update(
+				route === "#/game"
+					? "#/" + lastGame
+					: "#/"
+			)
+		})

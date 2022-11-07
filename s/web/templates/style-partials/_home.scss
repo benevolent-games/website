@@ -7,7 +7,6 @@
 	}
 	overflow: hidden;
 	[data-panel="game"] {
-		text-align: left;
 		// display: none;
 		width: 100%;
 
@@ -98,11 +97,12 @@
 		}
 	}
 
-	[data-panel="primary"] {
-		text-align: left;
+	[data-panel="home"] {
+		display: block;
 		margin: auto;
 		padding: 0 1em;
 		padding-bottom: 10em;
+
 		> section {
 			margin-top: 4em;
 		}
