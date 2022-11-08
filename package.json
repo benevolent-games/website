@@ -30,7 +30,7 @@
 		"test": "exit 0"
 	},
 	"dependencies": {
-		"@benev/swipe-snail": "^0.0.0",
+		"@benev/swipe-snail": "^0.0.1",
 		"@chasemoskal/magical": "^0.0.1",
 		"@chasemoskal/snapstate": "^0.0.8",
 		"es-module-shims": "^1.4.6",
