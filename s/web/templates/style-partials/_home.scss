@@ -7,8 +7,16 @@
 	}
 	overflow: hidden;
 	[data-panel="game"] {
+		position: relative;
 		// display: none;
 		width: 100%;
+
+		.back-button {
+			color: white;
+			position: absolute;
+			top: 20px;
+			left: 20px;
+		}
 
 		[data-game] {
 			display: none;

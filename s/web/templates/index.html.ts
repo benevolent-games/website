@@ -3,6 +3,7 @@ import {BenevolentWebsiteContext} from "../types.js"
 import {html, html as svg, attrBool} from "xiome/x/toolbox/hamster-html/html.js"
 
 import githubSvg from "../icons/akar/github.svg.js"
+import arrowBack from "../icons/akar/arrow-back.svg.js"
 import discordSvg from "../icons/akar/discord.svg.js"
 import circleTriangleRightFillSvg from "../icons/akar/circle-triangle-right-fill.svg.js"
 import pageHtml from "../partials/page.html.js"
@@ -130,6 +131,7 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 				${games.map(([name, description], index) => html`
 
 					<section data-game="${name}" ${attrBool("data-active", index === 0)}>
+						<a class="back-button" href="#/">${svg(arrowBack)}</a>
 						<header style="background-image: url('/assets/games/${name}/wallpaper.webp')">
 							<h1>
 								<img src="/assets/games/${name}/label.webp" alt="${name}"/>
