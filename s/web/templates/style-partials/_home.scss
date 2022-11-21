@@ -74,8 +74,11 @@
 					text-shadow: 1px 2px 0 #0004;
 				}
 	
-				button {
+				.play {
 					border: 0;
+					color: white;
+					text-decoration: underline;
+
 					margin-top: 2rem;
 
 					display: flex;

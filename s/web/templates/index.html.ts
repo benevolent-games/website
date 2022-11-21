@@ -137,10 +137,10 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 								<img src="/assets/games/${name}/label.webp" alt="${name}"/>
 							</h1>
 							<p>${description}</p>
-							<button>
+							<a class=play href="https://${name}.benevolent.games/">
 								${svg(circleTriangleRightFillSvg)}
 								<span>play</span>
-							</button>
+							</a>
 						</header>
 						<div>
 							<p></p>
