@@ -31,7 +31,7 @@
 	},
 	"dependencies": {
 		"@benev/swipe-snail": "^0.0.1",
-		"@chasemoskal/magical": "^0.0.1",
+		"@chasemoskal/magical": "^0.0.4",
 		"@chasemoskal/snapstate": "^0.0.8",
 		"es-module-shims": "^1.4.6",
 		"lit": "^2.4.1",
@@ -45,9 +45,9 @@
 		"http-server": "^14.1.0",
 		"importly": "^0.2.0",
 		"npm-run-all": "^4.1.5",
-		"rollup": "^3.2.5",
-		"sass": "^1.56.0",
-		"typescript": "^4.5.5"
+		"rollup": "^3.3.0",
+		"sass": "^1.56.1",
+		"typescript": "^4.9.3"
 	},
 	"repository": {
 		"type": "git",
