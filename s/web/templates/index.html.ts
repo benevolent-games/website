@@ -19,13 +19,13 @@ const games = [
 ]
 
 const tools = [
-	["🏞️ terrarium", "generate infinite outdoor worlds"],
-	["🤖 humanoid", "1st/3rd person gameplay template"],
-	["🔘 nubs", "user input systems"],
-	["🫏 mule", "inventory ui"],
-	["🐌 swipe-snail", "fastest web swipe-panels around"],
-	["⚗️ shad", "shader devlab"],
-	["🐦 sparrow-rtc", "webrtc connectivity library", "https://github.com/chase-moskal/sparrow-rtc#readme"],
+	["🏞️", "terrarium", "generate infinite outdoor worlds"],
+	["🤖", "humanoid", "1st/3rd person gameplay template"],
+	["🔘", "nubs", "user input systems"],
+	["🫏", "mule", "inventory ui"],
+	["🐌", "swipe-snail", "fastest web swipe-panels around"],
+	["⚗️", "shad", "shader devlab"],
+	["🐦", "sparrow-rtc", "webrtc connectivity library", "https://github.com/chase-moskal/sparrow-rtc#readme"],
 	// ["underworld", "generate infinite dungeons"],
 	// ["pilot", "pathfinding"],
 	// ["octo", "netcode for action games"],
@@ -96,12 +96,15 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 				<section class=tools>
 					<h2>developer tools</h2>
 					<nav>
-						${tools.map(([name, description, url]) => html`
+						${tools.map(([emoji, name, description, url]) => html`
 							<a
 								href=${url ?? `https://github.com/benevolent-games/${name}#readme`}
 								style="background-image: url('/assets/tools/tools.webp')">
-									<span data-name>${name}</span>
-									<span data-description>${description}</span>
+								<span data-name>
+									<span data-emoji>${emoji}</span>
+									<span data-text>${name}</span>
+								</span>
+								<span data-description>${description}</span>
 							</a>
 						`)}
 					</nav>
