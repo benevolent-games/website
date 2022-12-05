@@ -41,15 +41,24 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 				<script
 					defer
 					type=module
-					src="${context.v("/main.bundle.js")}">
-				</script>
+					src="${context.v("/main.bundle.js")}"
+				></script>
 			`
 			: html`
 				<script
 					defer
+					type=importmap-shim
+					src="${context.v("/importmap.json")}"
+				></script>
+				<script
+					defer
+					src="/node_modules/es-module-shims/dist/es-module-shims.wasm.js"
+				></script>
+				<script
+					defer
 					type=module-shim
-					src="${context.v("/main.js")}">
-				</script>
+					src="${context.v("/main.js")}"
+				></script>
 			`}
 		<style>
 			.logo-unit {

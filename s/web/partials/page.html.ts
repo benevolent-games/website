@@ -6,9 +6,9 @@ import headBasicsHtml from "./head-basics.html.js"
 
 export default ({
 	mode, v,
-	htmlClass,
 	headContent,
 	mainContent,
+	htmlClass = "",
 	...options
 }: BenevolentWebsiteContext & {
 	htmlClass?: string
@@ -17,18 +17,25 @@ export default ({
 }) => html`
 
 <!doctype html>
-<html class="${htmlClass ?? ""}">
+<html class="${htmlClass}">
 <head>
 	${headBasicsHtml({...options, mode, v, title: "benevolent.games"})}
-
-	<script defer type=importmap-shim src="${v("/importmap.json")}"></script>
+	${mode === "production"
+		? html`
+			<script
+				defer
+				type=module-shim
+				src="${v("/node_modules/xiome/x/xiome.bundle.min.js")}"
+			></script>
+		`
+		: html`
+			<script
+				defer
+				type=module-shim
+				src="${v("/node_modules/xiome/x/xiome-mock.bundle.min.js")}"
+			></script>
+		`}
 	${headContent}
-	${
-		mode === "production"
-			? html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome.bundle.min.js")}"></script>`
-			: html`<script defer type=module-shim src="${v("/node_modules/xiome/x/xiome-mock.bundle.min.js")}"></script>`
-	}
-	<script defer src="/node_modules/es-module-shims/dist/es-module-shims.wasm.js"></script>
 </head>
 <body>
 	<div class=menubar>
