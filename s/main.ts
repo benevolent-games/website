@@ -65,6 +65,8 @@ const router = hashrouter((route, count) => {
 	}
 })
 
+router.hashchange()
+
 SnailSystem
 	.events
 	.PanelChangeEvent
