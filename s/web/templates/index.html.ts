@@ -19,17 +19,17 @@ const games = [
 ]
 
 const tools = [
-	["nubs", "mobile thumbsticks"],
-	["swipe-snail", "fastest web swipe-panels around"],
-	["shad", "shader devlab"],
-	["humanoid", "1st/3rd person gameplay template"],
-	// ["terrarium", "generate infinite outdoor worlds"],
+	["🏞️ terrarium", "generate infinite outdoor worlds"],
+	["🤖 humanoid", "1st/3rd person gameplay template"],
+	["🔘 nubs", "user input systems"],
+	["🫏 mule", "inventory ui"],
+	["🐌 swipe-snail", "fastest web swipe-panels around"],
+	["⚗️ shad", "shader devlab"],
+	["🐦 sparrow-rtc", "webrtc connectivity library", "https://github.com/chase-moskal/sparrow-rtc#readme"],
 	// ["underworld", "generate infinite dungeons"],
 	// ["pilot", "pathfinding"],
 	// ["octo", "netcode for action games"],
 	// ["weaver", "netcode for rts games"],
-	// ["sparrow-rtc", "webrtc connectivity library"],
-	// ["mouseplay", "pointer-lock cursor systems"],
 ]
 
 export default (context: BenevolentWebsiteContext) => pageHtml({
@@ -96,9 +96,9 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 				<section class=tools>
 					<h2>developer tools</h2>
 					<nav>
-						${tools.map(([name, description]) => html`
+						${tools.map(([name, description, url]) => html`
 							<a
-								href="https://github.com/benevolent-games/${name}#readme"
+								href=${url ?? `https://github.com/benevolent-games/${name}#readme`}
 								style="background-image: url('/assets/tools/tools.webp')">
 									<span data-name>${name}</span>
 									<span data-description>${description}</span>
