@@ -1,15 +1,21 @@
 
 export const query = {
 	one<E extends Element>(selector: string) {
-		const result = document.querySelector<E>(selector)
-		if (!result)
-			throw new Error(`could not find ${selector}`)
-		return result
+		return throwWhenNotFound(
+			selector,
+			document.querySelector<E>(selector),
+		)
 	},
 	all<E extends Element>(selector: string) {
-		const result = document.querySelectorAll<E>(selector)
-		if (!result)
-			throw new Error(`could not find ${selector}`)
-		return result
+		return throwWhenNotFound(
+			selector,
+			document.querySelectorAll<E>(selector),
+		)
 	},
+}
+
+function throwWhenNotFound<T>(selector: string, result: T): NonNullable<T> {
+	if (!result)
+		throw new Error(`could not find ${selector}`)
+	return result
 }
