@@ -2,29 +2,27 @@
 import "@benev/swipe-snail/x/elements.js"
 
 import {hashrouter} from "@benev/swipe-snail/x/hashrouter.js"
-import {runLogoAnimation} from "./utils/run-logo-animation.js"
 import {SnailSystem} from "@benev/swipe-snail/x/elements/system/element.js"
+import {PanelChangeEvent} from "@benev/swipe-snail/x/events/panel-change.js"
+
+import {query} from "./utils/query.js"
+import {runLogoAnimation} from "./utils/run-logo-animation.js"
 import {activateSpecificGameInPanel} from "./utils/activate-specific-game-in-panel.js"
 
 const elements = {
-	logoUnit: (
-		document
-			.querySelector<HTMLElement>(".logo-unit")!
-	),
+	logoUnit:
+		query.one<HTMLElement>(".logo-unit"),
+
+	games:
+		query.all<HTMLElement>(`[data-panel="game"] [data-game]`),
+
 	snail: {
-		system: (
-			document
-				.querySelector<SnailSystem>(`snail-system`)!
-		),
-		panel(route: string) {
-			return document
-				.querySelector<HTMLElement>(`[data-route="${route}"]`)!
-		},
+		system:
+			query.one<SnailSystem>(`snail-system`),
+
+		panel: (route: string) =>
+			query.one<HTMLElement>(`[data-route="${route}"]`),
 	},
-	games: (
-		document
-			.querySelectorAll<HTMLElement>(`[data-panel="game"] [data-game]`)
-	),
 }
 
 runLogoAnimation({
@@ -67,16 +65,24 @@ const router = hashrouter((route, count) => {
 
 router.hashchange()
 
-SnailSystem
-	.events
-	.PanelChangeEvent
-		.listen(elements.snail.system)
-		.handle(event => {
-			const panel = event.detail
-			const route = panel.getAttribute("data-route")
-			router.update(
-				route === "#/game"
-					? "#/" + lastGame
-					: "#/"
-			)
-		})
+const firstTime = (() => {
+	let count = 0
+	return () => count++ < 1
+})()
+
+PanelChangeEvent
+	.listen(elements.snail.system)
+	.handle(event => {
+
+		if (firstTime())
+			return undefined
+
+		const panel = event.detail
+		const attribute = panel.getAttribute("data-route")
+		const route = attribute === "#/game"
+			? "#/" + lastGame
+			: "#/"
+
+		router.update(route)
+
+	})

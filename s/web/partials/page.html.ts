@@ -24,14 +24,14 @@ export default ({
 		? html`
 			<script
 				defer
-				type=module-shim
+				type=module
 				src="${v("/node_modules/xiome/x/xiome.bundle.min.js")}"
 			></script>
 		`
 		: html`
 			<script
 				defer
-				type=module-shim
+				type=module
 				src="${v("/node_modules/xiome/x/xiome-mock.bundle.min.js")}"
 			></script>
 		`}

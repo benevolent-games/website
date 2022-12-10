@@ -47,15 +47,6 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 			: html`
 				<script
 					defer
-					type=importmap-shim
-					src="${context.v("/importmap.json")}"
-				></script>
-				<script
-					defer
-					src="/node_modules/es-module-shims/dist/es-module-shims.wasm.js"
-				></script>
-				<script
-					defer
 					type=module-shim
 					src="${context.v("/main.js")}"
 				></script>
