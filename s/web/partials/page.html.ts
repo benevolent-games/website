@@ -20,21 +20,6 @@ export default ({
 <html class="${htmlClass}">
 <head>
 	${headBasicsHtml({...options, mode, v, title: "benevolent.games"})}
-	${mode === "production"
-		? html`
-			<script
-				defer
-				type=module
-				src="${v("/node_modules/xiome/x/xiome.bundle.min.js")}"
-			></script>
-		`
-		: html`
-			<script
-				defer
-				type=module
-				src="${v("/node_modules/xiome/x/xiome-mock.bundle.min.js")}"
-			></script>
-		`}
 	${headContent}
 </head>
 <body>
