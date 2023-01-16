@@ -26,7 +26,8 @@
 		"watch-typescript": "npm run -s typescript -- -w",
 		"watch-web": "chokidar \"x/web/**/*\" -c \"npm run web -s && echo 'rebuilt web'\"",
 		"watch-sass": "npm run sass -s -- --watch",
-		"start": "http-server x",
+		"http": "http-server x",
+		"start": "run-p http watch",
 		"test": "exit 0"
 	},
 	"dependencies": {
