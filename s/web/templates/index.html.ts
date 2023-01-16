@@ -4,8 +4,8 @@ import {html, html as svg, attrBool} from "xiome/x/toolbox/hamster-html/html.js"
 
 import pageHtml from "../partials/page.html.js"
 import githubSvg from "../icons/akar/github.svg.js"
-import arrowBack from "../icons/akar/arrow-back.svg.js"
 import discordSvg from "../icons/akar/discord.svg.js"
+import arrowBack from "../icons/akar/arrow-back.svg.js"
 import circleTriangleRightFillSvg from "../icons/akar/circle-triangle-right-fill.svg.js"
 
 const urls = {
@@ -26,10 +26,8 @@ const tools = [
 	["🐌", "swipe-snail", "fastest web swipe-panels around"],
 	["⚗️", "shad", "shader devlab"],
 	["🐦", "sparrow-rtc", "webrtc connectivity library", "https://github.com/chase-moskal/sparrow-rtc#readme"],
-	// ["underworld", "generate infinite dungeons"],
-	// ["pilot", "pathfinding"],
-	// ["octo", "netcode for action games"],
-	// ["weaver", "netcode for rts games"],
+	["🎛️", "argv", "cli argument parser"],
+	["🖼️⚙️", "batchimage", "bulk image processing"],
 ]
 
 export default (context: BenevolentWebsiteContext) => pageHtml({
