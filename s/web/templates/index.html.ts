@@ -14,7 +14,7 @@ const urls = {
 }
 
 const games = [
-	["humanoid", "explore the benevolent testing facility"],
+	["humanoid", "explore the benevolent testing facility", "https://humanoid.benevolent.games/?dev"],
 	["aeterna", "open world rpg"],
 ]
 
@@ -129,7 +129,7 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 			</snail-panel>
 			<snail-panel crossfade data-route="#/game" data-panel=game>
 
-				${games.map(([name, description], index) => html`
+				${games.map(([name, description, url], index) => html`
 
 					<section data-game="${name}" ${attrBool("data-active", index === 0)}>
 						<a class="back-button" href="#/">${svg(arrowBack)}</a>
@@ -138,7 +138,7 @@ export default (context: BenevolentWebsiteContext) => pageHtml({
 								<img src="/assets/games/${name}/label.webp" alt="${name}"/>
 							</h1>
 							<p>${description}</p>
-							<a class=play href="https://${name}.benevolent.games/">
+							<a class=play href="${url ?url :"https://${name}.benevolent.games/"}">
 								${svg(circleTriangleRightFillSvg)}
 								<span>play</span>
 							</a>
