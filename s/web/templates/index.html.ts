@@ -14,7 +14,7 @@ const urls = {
 }
 
 const games = [
-	["humanoid", "explore the benevolent testing facility", "https://humanoid.benevolent.games/?dev"],
+	["humanoid", "explore the benevolent testing facility"],
 	["aeterna", "open world rpg"],
 ]
 
