@@ -21,7 +21,8 @@ const games = [
 const tools = [
 	["🏞️", "terrarium", "generate infinite outdoor worlds"],
 	["🤖", "humanoid", "1st/3rd person gameplay template"],
-	["🔘", "nubs", "user input systems"],
+	["🧰", "toolbox", "grab-bag babylon-oriented toolkit"],
+	["🔘", "nubs", "user input devices and keybinds editor"],
 	["🫏", "mule", "inventory ui"],
 	["🐌", "swipe-snail", "fastest web swipe-panels around"],
 	["⚗️", "shad", "shader devlab"],
